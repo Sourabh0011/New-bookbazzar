@@ -1,8 +1,8 @@
 "use client";
 import React, { useRef, useState, useEffect } from 'react';
-import { ShoppingCart, Search, User, Menu, ChevronDown, ChevronLeft, ChevronRight, CornerRightUp } from 'lucide-react';
+import {Eye , ShoppingCart, Search, User, Menu, ChevronDown, ChevronLeft, ChevronRight, CornerRightUp } from 'lucide-react';
 import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin } from 'react-icons/fa';
-import {  Eye } from 'lucide-react';
+
 
 // --- Placeholder Data ---
 const categoryGridItems = [
@@ -65,11 +65,10 @@ const Header = () => (
     </header>
 );
 
-// 2. Full-Width Hero Slider Component (CORRECTED SCOPE)
+// 2. Full-Width Hero Slider Component (FIXED DESKTOP HEIGHT)
 const HeroSlider = () => {
     const [currentIndex, setCurrentIndex] = useState(0);
 
-    // FUNCTIONS ARE SCOPED CORRECTLY HERE
     const nextSlide = () => {
         setCurrentIndex(prevIndex => 
             prevIndex === heroImages.length - 1 ? 0 : prevIndex + 1
@@ -92,8 +91,8 @@ const HeroSlider = () => {
     };
 
     return (
-        // Mobile: 300px height. Desktop: 80vh height (Full-Screen effect)
-        <div className="h-[300px] md:h-[80vh] w-full overflow-hidden relative group">
+        // KEY CHANGE: Height reduced to md:h-[500px]
+        <div className="h-[300px] md:h-[600px] w-full overflow-hidden relative group top-4"> 
             <div 
                 className="flex transition-transform duration-700 ease-in-out h-full"
                 style={{ transform: `translateX(-${currentIndex * 100}%)` }}
@@ -107,7 +106,7 @@ const HeroSlider = () => {
                         />
                          {/* Overlay and CTA */}
                         <div className="absolute inset-0 bg-black/30 flex flex-col items-center justify-center p-4">
-                            <h2 className="text-3xl sm:text-4xl md:text-6xl font-extrabold text-white text-center drop-shadow-lg">
+                            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-white text-center drop-shadow-lg">
                                 Exchange Study Material Seamlessly
                             </h2>
                             <p className="mt-2 text-md sm:text-xl text-white/90 text-center hidden md:block drop-shadow-md">
@@ -121,7 +120,7 @@ const HeroSlider = () => {
                 ))}
             </div>
 
-            {/* Navigation Buttons - USE DEFINED FUNCTIONS */}
+            {/* Navigation Buttons */}
             <button 
                 onClick={prevSlide}
                 className="absolute left-4 top-1/2 transform -translate-y-1/2 p-3 bg-black/30 text-white rounded-full opacity-0 group-hover:opacity-100 transition-opacity z-10 hover:bg-black/50 hidden sm:block"
@@ -158,10 +157,10 @@ const HeroSlider = () => {
 const ItemCard = ({ item }: { item: typeof featuredItems[0] }) => (
     // Outer container: Added more defined shadow, relative position for hover effects
     <div 
-        className="flex-shrink-0 w-[180px] sm:w-[220px] md:w-[250px] bg-white border border-gray-100 
+        className="flex-shrink-0 w-[180px] sm:w-[190px] md:w-[250px] bg-white border border-gray-100 
                    rounded-xl overflow-hidden shadow-lg 
                    transform hover:scale-[1.05] transition-all duration-300 cursor-pointer 
-                   relative group border-b-4 border-transparent hover:border-blue-500" 
+                   relative group border-b-4 border-transparent hover:border-blue-500 left-2" 
     >
         {/* 1. Image Area with Hover Overlay */}
         <div className="h-36 relative overflow-hidden bg-gray-100">
@@ -340,7 +339,7 @@ export default function HomePage() {
         <div className="min-h-screen bg-gray-50">
             <Header />
 
-            {/* 1. FULL-WIDTH SLIDER SECTION - Seamlessly connected below the Header */}
+            {/* 1. FULL-WIDTH SLIDER SECTION - Now with fixed 500px desktop height */}
             <section className="w-full">
                 <HeroSlider />
             </section>
