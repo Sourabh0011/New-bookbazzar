@@ -294,7 +294,7 @@ export default function HomePage() {
         <CategoryGrid />
 
         {/* Featured Items Slider */}
-        <FeaturedSlider />
+        {/* <FeaturedSlider /> */}
 
       </main>
 
