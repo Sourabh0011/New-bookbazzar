@@ -48,15 +48,15 @@ const Header = () => (
                 alt="BookBazzar Logo" 
                 className="w-8 h-8 md:w-10 md:h-10 object-contain"
             />
-            <h1 className="text-2xl font-bold text-green-700 hover:text-green-800 transition">BookBazzar</h1>
+            <h1 className="text-2xl font-bold text-blue-700 hover:text-blue-600 transition">BookBazzar</h1>
         </a>
 
         <nav className="hidden md:flex space-x-6 text-gray-600">
           <a href="#" className="flex items-center font-semibold text-green-700 border-b-2 border-green-700 pb-1">
             Buy Books <ChevronDown className="w-4 h-4 ml-1" />
           </a>
-          <a href="#" className="hover:text-green-700 transition">Sell Books</a>
-          <a href="#" className="hover:text-green-700 transition">My Account</a>
+          <a href="#" className="hover:text-blue-700 transition">Sell Books</a>
+          <a href="#" className="hover:text-blue-700 transition">My Account</a>
         </nav>
       </div>
       <div className="flex items-center space-x-4">
@@ -156,7 +156,7 @@ const ItemCard = ({ item }: { item: typeof featuredItems[0] }) => (
     <div className="p-4">
       <h3 className="text-base font-semibold text-gray-800 truncate" title={item.title}>{item.label}</h3>
       <p className="text-xl font-bold text-green-700 mt-1">${item.price}</p>
-      <button className="w-full mt-3 py-2 text-sm font-bold text-white bg-green-600 rounded-full hover:bg-green-700 transition transform hover:shadow-xl hover:-translate-y-0.5">
+      <button className="w-full mt-3 py-2 text-sm font-bold text-white bg-blue-600 rounded-full hover:bg-green-700 transition transform hover:shadow-xl hover:-translate-y-0.5">
         Add to Cart
       </button>
     </div>
