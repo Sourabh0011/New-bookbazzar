@@ -2,6 +2,7 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { ShoppingCart, Search, User, Menu, ChevronDown, ChevronLeft, ChevronRight, CornerRightUp } from 'lucide-react';
 import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin } from 'react-icons/fa';
+import {  Eye } from 'lucide-react';
 
 // --- Placeholder Data ---
 const categoryGridItems = [
@@ -155,30 +156,66 @@ const HeroSlider = () => {
 
 // 3. Item Card Component
 const ItemCard = ({ item }: { item: typeof featuredItems[0] }) => (
-    <div className="flex-shrink-0 w-[250px] sm:w-[300px] md:w-[280px] lg:w-[220px] bg-white border border-gray-200 rounded-xl overflow-hidden shadow-lg transform hover:scale-[1.03] transition-all duration-300 cursor-pointer">
-        <div className="h-40 relative">
+    // Outer container: Added more defined shadow, relative position for hover effects
+    <div 
+        className="flex-shrink-0 w-[180px] sm:w-[220px] md:w-[250px] bg-white border border-gray-100 
+                   rounded-xl overflow-hidden shadow-lg 
+                   transform hover:scale-[1.05] transition-all duration-300 cursor-pointer 
+                   relative group border-b-4 border-transparent hover:border-blue-500" 
+    >
+        {/* 1. Image Area with Hover Overlay */}
+        <div className="h-36 relative overflow-hidden bg-gray-100">
             <img
                 src={item.imageUrl} 
                 alt={item.title} 
-                className="w-full h-full object-cover" 
+                className="w-full h-full object-cover transition duration-500 group-hover:scale-105" 
             />
+            
+            {/* Hover Action Overlay */}
+            <div className="absolute inset-0 bg-blue-700/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
+                <div className="flex items-center space-x-2 text-white bg-blue-900/80 px-4 py-2 rounded-full font-bold shadow-2xl transform group-hover:scale-105">
+                    <Eye className="w-5 h-5" />
+                    <span>View Details</span>
+                </div>
+            </div>
         </div>
-        <div className="p-4">
-            <h3 className="text-base font-semibold text-gray-800 truncate" title={item.title}>{item.label}</h3>
-            <p className="text-xl font-bold text-blue-700 mt-1"> ₹{item.price}</p> 
-            <button className="w-full mt-3 py-2 text-sm font-bold text-white bg-blue-700 rounded-full hover:bg-blue-600 transition transform hover:shadow-xl hover:-translate-y-0.5">
-                Add to Cart
+
+        {/* 2. Content Area */}
+        <div className="p-4 relative">
+             {/* Product Type Tag (Moved to bottom content area) */}
+            <div className="absolute top-0 right-4 transform -translate-y-1/2 bg-blue-700 text-white text-xs font-semibold px-3 py-1 rounded-full shadow-lg">
+                {item.type}
+            </div>
+
+            <h3 className="text-base font-bold text-gray-800 truncate mb-1" title={item.title}>
+                {item.label}
+            </h3>
+            
+            {/* Price with theme color */}
+            <p className="text-xl font-extrabold text-blue-700 mt-1 mb-3"> 
+                ₹{item.price}
+            </p> 
+            
+            {/* Add to Cart Button (Elevated appearance) */}
+            <button 
+                className="w-full py-2 text-sm font-bold text-white bg-blue-700 rounded-lg 
+                           hover:bg-blue-600 transition shadow-md 
+                           flex items-center justify-center space-x-2 border border-blue-700"
+            >
+                <ShoppingCart className="w-4 h-4" />
+                <span>Add to Cart</span>
             </button>
         </div>
     </div>
 );
 
-// 4. Featured Items Slider Component
+
+// --- 4. Featured Items Slider Component (Enhanced Controls) ---
 const FeaturedSlider = () => {
     const scrollRef = useRef<HTMLDivElement>(null);
     const scroll = (direction: 'left' | 'right') => {
         if (scrollRef.current) {
-          const scrollAmount = 250; 
+          const scrollAmount = 300; // Increased scroll amount
           const newScrollPosition = direction === 'left' 
             ? scrollRef.current.scrollLeft - scrollAmount 
             : scrollRef.current.scrollLeft + scrollAmount;
@@ -187,20 +224,40 @@ const FeaturedSlider = () => {
     };
     return (
         <section className="relative my-12">
-            <h3 className="text-3xl font-bold text-blue-700 mb-6">📚 Study Essentials</h3>
-            <div ref={scrollRef} className="flex overflow-x-scroll gap-6 pb-6 pt-2 scrollbar-hide" style={{ scrollSnapType: 'x mandatory' }}>
+            <h3 className="text-3xl font-bold text-blue-700 mb-6">📚 Featured Study Essentials</h3>
+            
+            {/* Scrollable container with improved scrollbar utility */}
+            <div 
+                ref={scrollRef} 
+                className="flex overflow-x-scroll gap-6 pb-6 pt-2 
+                           scrollbar-thin scrollbar-thumb-blue-400 scrollbar-track-blue-100" 
+                style={{ scrollSnapType: 'x mandatory' }}
+            >
               {featuredItems.map((item) => (
                   <div key={item.id} style={{ scrollSnapAlign: 'start' }}>
                     <ItemCard item={item} />
                   </div>
               ))}
             </div>
-            <button onClick={() => scroll('left')} className="absolute left-0 top-1/2 -mt-10 transform -translate-x-1/2 bg-white p-3 rounded-full shadow-xl z-20 hover:bg-gray-100 transition hidden lg:block" aria-label="Previous Item">
+            
+            {/* Desktop navigation buttons - More stylized */}
+            <button 
+                onClick={() => scroll('left')} 
+                className="absolute left-0 top-1/2 -mt-10 transform -translate-x-1/2 bg-white p-3 rounded-full shadow-2xl z-20 
+                           hover:bg-blue-100 transition hidden lg:block border border-blue-200" 
+                aria-label="Previous Item"
+            >
               <ChevronLeft className="w-6 h-6 text-blue-700" />
             </button>
-            <button onClick={() => scroll('right')} className="absolute right-0 top-1/2 -mt-10 transform translate-x-1/2 bg-white p-3 rounded-full shadow-xl z-20 hover:bg-gray-100 transition hidden lg:block" aria-label="Next Item">
+            <button 
+                onClick={() => scroll('right')} 
+                className="absolute right-0 top-1/2 -mt-10 transform translate-x-1/2 bg-white p-3 rounded-full shadow-2xl z-20 
+                           hover:bg-blue-100 transition hidden lg:block border border-blue-200" 
+                aria-label="Next Item"
+            >
               <ChevronRight className="w-6 h-6 text-blue-700" />
             </button>
+            
             <p className="text-center text-sm text-gray-500 mt-4 md:hidden font-medium">&lt; Swipe left/right to browse more items &gt;</p>
         </section>
       );
