@@ -1,6 +1,7 @@
 "use client";
 import React, { useRef, useState, useEffect } from 'react';
 import { ShoppingCart, Search, User, Menu, ChevronDown, ChevronLeft, ChevronRight } from 'lucide-react';
+import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin } from 'react-icons/fa';
 
 // --- Placeholder Data (Omitted for brevity) ---
 const categoryGridItems = [
@@ -222,28 +223,66 @@ const CategoryGrid = () => (
 
 // 6. Footer Component (Omitted for brevity)
 const Footer = () => (
-    <footer className="bg-gray-900 text-white mt-16 py-8">
-        <div className="max-w-7xl mx-auto px-4">
-            <div className="flex flex-col md:flex-row justify-between items-center md:items-start text-sm">
-                <div className="space-y-2 mb-6 md:mb-0">
-                    <p className="text-lg font-bold text-green-400">BookBazzar</p>
-                    <p className="text-gray-400">Your campus resource exchange.</p>
+    // Increased padding, darker background, and a subtle top border for separation
+    <footer className="bg-gray-950 text-white mt-20 py-10 border-t border-gray-800 shadow-xl">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+            {/* Main content grid: 1 column on mobile, 3 columns on medium/large screens */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-sm pb-8">
+
+                {/* 1. Brand/Mission Section (Left) */}
+                <div className="text-center md:text-left">
+                    <p className="text-2xl font-extrabold text-blue-600 mb-2 tracking-wider">BookBazzar</p>
+                    <p className="text-gray-400 mb-4 max-w-xs mx-auto md:mx-0">
+                        The ultimate student-led platform for buying, selling, and exchanging campus resources.
+                    </p>
+                    {/* Social Icons */}
+                    <div className="flex justify-center md:justify-start space-x-4 text-xl mt-4">
+                        <a href="#" aria-label="Facebook" className="text-gray-500 hover:text-blue-500 transition duration-300">
+                            <FaFacebook />
+                        </a>
+                        <a href="#" aria-label="Twitter" className="text-gray-500 hover:text-blue-400 transition duration-300">
+                            <FaTwitter />
+                        </a>
+                        <a href="#" aria-label="Instagram" className="text-gray-500 hover:text-pink-500 transition duration-300">
+                            <FaInstagram />
+                        </a>
+                        <a href="#" aria-label="LinkedIn" className="text-gray-500 hover:text-blue-600 transition duration-300">
+                            <FaLinkedin />
+                        </a>
+                    </div>
                 </div>
-                <div className="flex flex-wrap justify-center md:justify-end space-x-6">
-                    <a href="#" className="hover:text-green-400 transition">About Us</a>
-                    <a href="#" className="hover:text-green-400 transition">How It Works</a>
-                    <a href="#" className="hover:text-green-400 transition">FAQ</a>
-                    <a href="#" className="hover:text-green-400 transition">Contact</a>
-                    <a href="#" className="hover:text-green-400 transition">Terms</a>
-                    <a href="#" className="hover:text-green-400 transition">Privacy</a>
+
+                {/* 2. Quick Links Section (Center/Right on Mobile, Center on Desktop) */}
+                <div className="flex flex-col items-center md:items-start space-y-4">
+                    <p className="text-lg font-semibold text-blue-400 mb-2">Quick Links</p>
+                    <div className="flex flex-col items-center md:items-start space-y-2">
+                        <a href="#" className="text-gray-300 hover:text-blue-400 transition duration-200">About Us</a>
+                        <a href="#" className="text-gray-300 hover:text-blue-400 transition duration-200">How It Works</a>
+                        <a href="#" className="text-gray-300 hover:text-blue-400 transition duration-200">FAQ</a>
+                        <a href="#" className="text-gray-300 hover:text-blue-400 transition duration-200">Contact Support</a>
+                    </div>
+                </div>
+
+                {/* 3. Legal & Resources Section (Right on Desktop) */}
+                <div className="flex flex-col items-center md:items-start space-y-4">
+                    <p className="text-lg font-semibold text-blue-400 mb-2">Legal & Resources</p>
+                    <div className="flex flex-col items-center md:items-start space-y-2">
+                        <a href="#" className="text-gray-300 hover:text-blue-400 transition duration-200">Terms of Service</a>
+                        <a href="#" className="text-gray-300 hover:text-blue-400 transition duration-200">Privacy Policy</a>
+                        <a href="#" className="text-gray-300 hover:text-blue-400 transition duration-200">Affiliate Program</a>
+                        <a href="#" className="text-gray-300 hover:text-blue-400 transition duration-200">Sitemap</a>
+                    </div>
                 </div>
             </div>
-            <div className="border-t border-gray-700 mt-6 pt-6 text-center">
+
+            {/* Copyright Section (Always centered) */}
+            <div className="border-t border-gray-800 mt-4 pt-4 text-center">
                 <p className="text-xs text-gray-500">&copy; {new Date().getFullYear()} BookBazzar. All rights reserved.</p>
             </div>
         </div>
     </footer>
-)
+);
+
 
 
 // --- Main Page Component ---
