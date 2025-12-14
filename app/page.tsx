@@ -44,7 +44,7 @@ const Header = () => (
         <a href="/" className="flex items-center space-x-2">
             {/* LOGO IMAGE - Must place 'logo.png' in the /public folder */}
             <img 
-                src="/logo.png" 
+                src="/logoo.png" 
                 alt="BookBazzar Logo" 
                 className="w-8 h-8 md:w-10 md:h-10 object-contain"
             />
