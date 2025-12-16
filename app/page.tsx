@@ -1,6 +1,7 @@
 "use client";
 import React, { useRef, useState, useEffect } from 'react';
 import {Eye , ShoppingCart, Search, User, Menu, ChevronDown, ChevronLeft, ChevronRight, CornerRightUp } from 'lucide-react';
+import { Link } from 'lucide-react';
 import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin } from 'react-icons/fa';
 
 
@@ -39,14 +40,14 @@ const Header = () => (
     <header className="bg-white border-b sticky top-0 z-20 shadow-lg">
         <div className="max-w-7xl mx-auto p-4 flex justify-between items-center">
             <div className="flex items-center space-x-2 md:space-x-8">
-                <a href="/" className="flex items-center space-x-2">
+                <Link href="/" className="flex items-center space-x-2">
                     <img 
                         src="/logoo.png" 
                         alt="BookBazzar Logo" 
                         className="w-8 h-8 md:w-10 md:h-10 object-contain"
                     />
                     <h1 className="text-xl md:text-2xl font-bold text-blue-700 hover:text-blue-600 transition">BookBazzar</h1>
-                </a>
+                </Link>
                 <nav className="hidden md:flex space-x-6 text-gray-600">
                     <a href="#" className="flex items-center font-semibold text-blue-700 border-b-2 border-blue-700 pb-1">
                         Buy Books <ChevronDown className="w-4 h-4 ml-1" />
